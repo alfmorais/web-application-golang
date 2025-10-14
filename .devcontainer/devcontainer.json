@@ -4,14 +4,13 @@
     "context": "..",
     "workspaceFolder": "/workspace",
     "remoteUser": "vscode",
+    "updateRemoteUserUID": true,
     "runArgs": [
         "--env=GIT_AUTHOR_NAME",
         "--env=GIT_COMMITTER_NAME",
         "--env=GIT_AUTHOR_EMAIL",
         "--env=GIT_COMMITTER_EMAIL",
         "--env=SSH_AUTH_SOCK",
-        "-v",
-        "${env:SSH_AUTH_SOCK}:/ssh-agent",
         "--volume",
         "${env:HOME}/.gitconfig:/home/vscode/.gitconfig:ro",
         "--volume",
@@ -39,7 +38,7 @@
             ]
         }
     },
-    "postCreateCommand": "go mod tidy && go install github.com/cosmtrek/air@latest",
+    "postCreateCommand": "go mod tidy && go install github.com/air-verse/air@latest",
     "mounts": [
         "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
     ]

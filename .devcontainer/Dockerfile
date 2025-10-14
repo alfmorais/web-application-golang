@@ -3,13 +3,13 @@ FROM golang:1.25-bookworm
 RUN useradd -ms /bin/bash vscode && \
     apt-get update && \
     apt-get install -y \
-        git \
-        curl \
-        make \
-        bash-completion \
-        vim \
-        less \
-        build-essential && \
+    git \
+    curl \
+    make \
+    bash-completion \
+    vim \
+    less \
+    build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 USER vscode
