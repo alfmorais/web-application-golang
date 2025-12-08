@@ -1,0 +1,45 @@
+{
+    "name": "Go Web Application Dev",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "vscode",
+    "updateRemoteUserUID": true,
+    "runArgs": [
+        "--env=GIT_AUTHOR_NAME",
+        "--env=GIT_COMMITTER_NAME",
+        "--env=GIT_AUTHOR_EMAIL",
+        "--env=GIT_COMMITTER_EMAIL",
+        "--env=SSH_AUTH_SOCK",
+        "--volume",
+        "${env:HOME}/.gitconfig:/home/vscode/.gitconfig:ro",
+        "--volume",
+        "${env:HOME}/.ssh:/home/vscode/.ssh:ro"
+    ],
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "go.toolsManagement.checkForUpdates": "local",
+                "go.useLanguageServer": true,
+                "go.formatTool": "goimports",
+                "editor.formatOnSave": true,
+                "editor.tabSize": 4,
+                "files.trimTrailingWhitespace": true,
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            "extensions": [
+                "golang.go",
+                "github.copilot",
+                "github.copilot-chat",
+                "eamodio.gitlens",
+                "ms-azuretools.vscode-docker",
+                "mhutchie.git-graph",
+                "streetsidesoftware.code-spell-checker"
+            ]
+        }
+    },
+    "postCreateCommand": "go mod tidy && go install github.com/air-verse/air@latest",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
+    ]
+}
